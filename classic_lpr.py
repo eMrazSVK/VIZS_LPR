@@ -95,44 +95,6 @@ def detect_plate_candidates(input_image, show_processing, num):
                 cv2.imshow('Best Plate Candidate', license_plate)
                 cv2.imshow('Raw Image', input_image)
 
-                # Hough Lines - currently unused
-                '''
-                horizontal_lines = cv2.HoughLines(black, 0.5, np.pi / 180, 50, min_theta=1.5, max_theta=1.6)
-                vertical_lines = cv2.HoughLines(black, 0.5, np.pi / 180, 25, min_theta=-0.1, max_theta=0.1)
-    
-                if horizontal_lines is not None:
-                    for line in horizontal_lines:
-                        for rho, theta in line:
-                            print(theta, "\n")
-                            a = np.cos(theta)
-                            b = np.sin(theta)
-                            x0 = a * rho
-                            y0 = b * rho
-                            x1 = int(x0 + 1000 * (-b))
-                            y1 = int(y0 + 1000 * (a))
-                            x2 = int(x0 - 1000 * (-b))
-                            y2 = int(y0 - 1000 * (a))
-    
-                            cv2.line(input_image, (x1, y1), (x2, y2), 255, 1)
-    
-                    if vertical_lines is not None:
-                        for line in vertical_lines:
-                            for rho, theta in line:
-                                print(theta, "\n")
-                                a = np.cos(theta)
-                                b = np.sin(theta)
-                                x0 = a * rho
-                                y0 = b * rho
-                                x1 = int(x0 + 1000 * (-b))
-                                y1 = int(y0 + 1000 * (a))
-                                x2 = int(x0 - 1000 * (-b))
-                                y2 = int(y0 - 1000 * (a))
-    
-                                cv2.line(input_image, (x1, y1), (x2, y2), 255, 1)
-                
-                    cv2.imshow('Raw Image', input_image)
-                cv2.waitKey(0)
-                '''
             cv2.imwrite(os.path.join(IMAGE_PATH, str(write_count)+'.jpg'), license_plate)
             cv2.imwrite(os.path.join(FINAL_PATH, str(write_count) + '.jpg'), input_image)
             write_count += 1
